@@ -8,11 +8,74 @@
   </head>
   <body>
     <a-scene>
-      <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
-      <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
-      <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
-      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
-      <a-sky color="#ECECEC"></a-sky>
+      <!-- Assets (ensure these files exist in the same folder) -->
+      <a-assets>
+        <img id="sky" src="sky1.png" alt="">
+        <img id="sandTex" src="sand.jpg" alt="">
+
+        <img id="coneTex" src="conetex.png" alt="">
+      </a-assets>
+
+      <!-- Sky (you said you'll edit/replace if needed) -->
+      <a-sky src="#sky" rotation="0 -30 0"></a-sky>
+
+      <!-- Sandy ground (textured) -->
+      <a-plane position="0 0 -2.5" rotation="-90 0 0" width="16" height="12"
+         color="#E7C87F" material="roughness:1; metalness:0"></a-plane>
+      </a-plane>
+
+      <!-- Sandcastle (uses sand texture + normal map) -->
+      <a-entity id="sandcastle" position="-0.6 0 -2.5" rotation="0 12 0" scale="1.2 1.2 1.2">
+        <!-- main base -->
+        <a-cylinder position="0 0.28 0" radius="0.6" height="0.45"
+                    material="src: #sandTex; repeat: 2 2; roughness: 1; metalness: 0; normalMap: #sandNormal; normalScale: 0.4 0.4">
+        </a-cylinder>
+
+        <!-- crenellations -->
+        <a-box position="-0.38 0.56 -0.06" depth="0.12" height="0.12" width="0.18" material="src: #sandTex; repeat:1 1"></a-box>
+        <a-box position="0.38 0.56 -0.06" depth="0.12" height="0.12" width="0.18" material="src: #sandTex; repeat:1 1"></a-box>
+        <a-box position="-0.06 0.56 0.38" depth="0.18" height="0.12" width="0.12" rotation="0 90 0" material="src: #sandTex; repeat:1 1"></a-box>
+        <a-box position="-0.06 0.56 -0.38" depth="0.18" height="0.12" width="0.12" rotation="0 90 0" material="src: #sandTex; repeat:1 1"></a-box>
+
+        <!-- corner towers -->
+        <a-cylinder position="-0.45 0.45 -0.45" radius="0.12" height="0.42" material="src: #sandTex; repeat:1 1"></a-cylinder>
+        <a-cone     position="-0.45 0.78 -0.45" radius-bottom="0.14" radius-top="0.0" height="0.25" material="src: #sandTex; repeat:1 1"></a-cone>
+
+        <a-cylinder position="0.45 0.45 -0.45" radius="0.12" height="0.42" material="src: #sandTex; repeat:1 1"></a-cylinder>
+        <a-cone     position="0.45 0.78 -0.45" radius-bottom="0.14" radius-top="0.0" height="0.25" material="src: #sandTex; repeat:1 1"></a-cone>
+
+        <a-cylinder position="-0.45 0.45 0.45" radius="0.12" height="0.42" material="src: #sandTex; repeat:1 1"></a-cylinder>
+        <a-cone     position="-0.45 0.78 0.45" radius-bottom="0.14" radius-top="0.0" height="0.25" material="src: #sandTex; repeat:1 1"></a-cone>
+
+        <a-cylinder position="0.45 0.45 0.45" radius="0.12" height="0.42" material="src: #sandTex; repeat:1 1"></a-cylinder>
+        <a-cone     position="0.45 0.78 0.45" radius-bottom="0.14" radius-top="0.0" height="0.25" material="src: #sandTex; repeat:1 1"></a-cone>
+
+        <!-- small decorative shells -->
+        <a-sphere position="-0.15 0.18 0.35" radius="0.04" color="#F7E9D9"></a-sphere>
+        <a-sphere position="0.22 0.18 -0.28" radius="0.05" color="#F7E9D9"></a-sphere>
+      </a-entity>
+
+      <!-- Ice cream (cone uses cone texture) -->
+      <a-entity id="icecream" position="0.9 0.06 -2.6" rotation="0 -10 0" scale="1.4 1.4 1.4">
+        <!-- textured cone (pointing down) -->
+        <a-cone position="0 0.00 0" radius-bottom="0.09" radius-top="0.0" height="0.18"
+                rotation="180 0 0"
+                material="src: #coneTex; repeat: 1 1; roughness: 0.8; metalness: 0">
+        </a-cone>
+
+        <!-- scoops -->
+        <a-sphere position="0 0.12 0" radius="0.075" color="#F7A8C9"></a-sphere>
+        <a-sphere position="0 0.22 0.015" radius="0.065" color="#FFF59D"></a-sphere>
+
+        <!-- cherry -->
+        <a-sphere position="0 0.31 0.02" radius="0.02" color="#D32F2F"></a-sphere>
+
+        <!-- sprinkles -->
+        <a-box position="-0.02 0.24 0.03" depth="0.005" height="0.01" width="0.03" color="#4CAF50"></a-box>
+        <a-box position="0.02 0.23 -0.01" depth="0.005" height="0.01" width="0.03" color="#2196F3"></a-box>
+        <a-box position="-0.03 0.21 -0.02" depth="0.005" height="0.01" width="0.03" color="#FFC107"></a-box>
+      </a-entity>
+
     </a-scene>
   </body>
 </html>
