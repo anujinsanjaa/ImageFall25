@@ -10,40 +10,47 @@
   <body>
     <a-scene>
       <a-assets>
-        <img id="sky" src="wintersky.jpg" alt="">
-        <img id="snowTex" src="snowtex.jpg" alt="">
-        <img id="cabinTex" src="assets/WoodenCabinObj/WoodCabinDif.jpg" alt="">
 
-        <a-asset-item id="cabinObj" src="assets/WoodenCabinObj/WoodenCabinObj.obj"></a-asset-item>
-        <a-asset-item id="cabinMtl" src="assets/WoodenCabinObj/WoodenCabinObj.mtl"></a-asset-item>
+        <!-- Backgrounds -->
+        <img id="sky" src="wintersky.jpg">
+        <img id="snowTex" src="snowtex.jpg">
 
-        <!-- FIXED TREE PATH HERE -->
-        <a-asset-item id="treeModel" src="assets/WoodenCabinObj/tree.gltf"></a-asset-item>
-        <!-- Tree model credit: see assets/WoodenCabinObj/tree.txt (CC-BY-4.0) -->
+        <!-- Cabin textures -->
+        <img id="cabinTex" src="assets/WoodCabinDif.jpg">
+        <img id="cabinNM" src="assets/WoodCabinNM.jpg">
+
+        <!-- Cabin model + MTL -->
+        <a-asset-item id="cabinObj" src="assets/WoodenCabinObj.obj"></a-asset-item>
+        <a-asset-item id="cabinMtl" src="assets/WoodenCabinObj.mtl"></a-asset-item>
+
       </a-assets>
 
       <!-- SKY -->
       <a-sky src="#sky" rotation="30 0 0"></a-sky>
 
+      <!-- LIGHTING (needed so OBJ isn't black) -->
+      <a-entity light="type: ambient; color: #999"></a-entity>
+      <a-entity light="type: directional; intensity: 1" position="3 6 2"></a-entity>
+
       <!-- GROUND -->
       <a-plane position="0 -2 0"
-        rotation="-90 0 0"
-        width="300"
-        height="300"
-        material="src: #snowTex; repeat: 30 30; roughness: 0; metalness: 0">
+               rotation="-90 0 0"
+               width="300" height="300"
+               material="src: #snowTex; repeat: 30 30;">
       </a-plane>
 
       <!-- CABIN -->
-      <a-obj-model src="#cabinObj"
+      <a-obj-model
+        src="#cabinObj"
         mtl="#cabinMtl"
         position="-1 -2 -5"
         rotation="0 20 0"
         scale="0.2 0.2 0.2">
       </a-obj-model>
 
-      <!-- Trees. -->
       <!-- CAMERA -->
       <a-entity camera look-controls wasd-controls position="0 1.6 0"></a-entity>
+
     </a-scene>
   </body>
 </html>
