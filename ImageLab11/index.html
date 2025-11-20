@@ -1,15 +1,42 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="https://aframe.io/releases/1.7.1/aframe.min.js"> </script>
+    <meta charset="utf-8" />
+    <title>Winter Wonderland</title>
+    <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+    <style>body{margin:0}</style>
   </head>
   <body>
     <a-scene>
-      <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
-      <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
-      <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
-      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
-      <a-sky color="#ECECEC"></a-sky>
+
+      <!-- ASSETS (your sky, textures, and 3D models go here) -->
+      <a-assets>
+        <img id="sky" src="winter_sky.png" alt="">
+        <img id="snowTex" src="pure-white-snow-surface.jpg" alt="">
+        <a-asset-item id="cabinModel" src="assets/cabin/scene.gltf"></a-asset-item>
+        <a-asset-item id="treeModel" src="assets/tree/scene.gltf"></a-asset-item>
+      </a-assets>
+      <!-- SKY -->
+      <a-sky src="#sky" rotation="0 0 0"></a-sky>
+      <!-- GROUND -->
+      <a-plane position="0 0 -3" rotation="-90 0 0" width="20" height="20"
+               color="#FFFFFF"
+               material="src: #snowTex; repeat: 4 4; roughness:1; metalness:0">
+      </a-plane>
+      <!-- CABIN -->
+      <a-entity gltf-model="#cabinModel"
+                position="-1 0 -5"
+                rotation="0 20 0"
+                scale="0.7 0.7 0.7">
+      </a-entity>
+      <!-- TREE -->
+      <a-entity gltf-model="#treeModel"
+                position="2 0 -6"
+                rotation="0 -10 0"
+                scale="1 1 1">
+      </a-entity>
+      <!-- CAMERA -->
+      <a-entity camera look-controls wasd-controls position="0 1.6 0"></a-entity>
     </a-scene>
   </body>
 </html>
