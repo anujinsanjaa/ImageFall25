@@ -22,6 +22,8 @@
         <!-- Cabin model + MTL -->
         <a-asset-item id="cabinObj" src="assets/WoodenCabinObj.obj"></a-asset-item>
         <a-asset-item id="cabinMtl" src="assets/WoodenCabinObj.mtl"></a-asset-item>
+          <!-- Snowman OBJ (no MTL present) -->
+        <a-asset-item id="snowmanObj" src="assets/snowman.obj"></a-asset-item>
 
       </a-assets>
 
@@ -46,6 +48,14 @@
         position="-1 -2 -5"
         rotation="0 20 0"
         scale="0.2 0.2 0.2">
+      </a-obj-model>
+
+        <!-- SNOWMAN: placed to the right/front of the cabin. Obj has no MTL, so apply a white material. -->
+      <a-obj-model src="#snowmanObj"
+        position="5 -2 5"
+        rotation="0 25 0"
+        scale="2 2 2"
+        material="color: #ffffff; roughness: 1; metalness: 0">
       </a-obj-model>
 
       <!-- CAMERA -->
