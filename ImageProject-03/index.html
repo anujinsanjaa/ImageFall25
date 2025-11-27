@@ -1,15 +1,66 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="https://aframe.io/releases/1.7.1/aframe.min.js"> </script>
+    <meta charset="utf-8" />
+    <title>Winter Wonderland</title>
+    <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+    <style>body{margin:0}</style>
   </head>
+
   <body>
     <a-scene>
-      <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
-      <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
-      <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
-      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
-      <a-sky color="#ECECEC"></a-sky>
+      <a-assets>
+
+        <!-- Backgrounds -->
+        <img id="sky" src="wintersky.jpg">
+        <img id="snowTex" src="snowtex.jpg">
+
+        <!-- Cabin textures -->
+        <img id="cabinTex" src="assets/WoodCabinDif.jpg">
+        <img id="cabinNM" src="assets/WoodCabinNM.jpg">
+
+        <!-- Cabin model + MTL -->
+        <a-asset-item id="cabinObj" src="assets/WoodenCabinObj.obj"></a-asset-item>
+        <a-asset-item id="cabinMtl" src="assets/WoodenCabinObj.mtl"></a-asset-item>
+          <!-- Snowman OBJ (no MTL present) -->
+        <a-asset-item id="snowmanObj" src="assets/snowman.obj"></a-asset-item>
+
+      </a-assets>
+
+      <!-- SKY -->
+      <a-sky src="#sky" rotation="30 0 0"></a-sky>
+
+      <!-- LIGHTING (needed so OBJ isn't black) -->
+      <a-entity light="type: ambient; color: #999"></a-entity>
+      <a-entity light="type: directional; intensity: 1" position="3 6 2"></a-entity>
+
+      <!-- GROUND -->
+      <a-plane position="0 -2 0"
+               rotation="-90 0 0"
+               width="300" height="300"
+               material="src: #snowTex; repeat: 30 30;">
+      </a-plane>
+
+      <!-- CABIN -->
+      <a-obj-model
+        src="#cabinObj"
+        mtl="#cabinMtl"
+        position="-1 -2 -5"
+        rotation="0 20 0"
+        scale="0.2 0.2 0.2">
+      </a-obj-model>
+
+        <!-- SNOWMAN: placed to the right/front of the cabin. Obj has no MTL, so apply a white material. -->
+      <a-obj-model src="#snowmanObj"
+        position="5 -2 5"
+        rotation="0 25 0"
+        scale="2 2 2"
+        material="color: #ffffff; roughness: 1; metalness: 0">
+      </a-obj-model>
+
+      <!-- CAMERA -->
+      <a-entity camera look-controls wasd-controls position="0 1.6 0"></a-entity>
+
     </a-scene>
   </body>
 </html>
